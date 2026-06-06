@@ -5,7 +5,7 @@ set -e
 ZABBIX_VERSION="7.0"
 DB_NAME="zabbix"
 DB_USER="zabbix"
-DB_PASS="ZabbixPass123!"
+DB_PASS="123"
 TIMEZONE="America/Montevideo"
 
 echo "=== Iniciando despliegue de Zabbix en Debian ==="
@@ -98,7 +98,7 @@ if ! grep -q "^DBPassword=" /etc/zabbix/zabbix_server.conf; then
    echo "DBPassword=$DB_PASS" >> /etc/zabbix/zabbix_server.conf
 fi
 
-echo "Configurando zona horaria PHP..."
+echo "Configurando zona horaria..."
 sed -i "s|^.*php_value date.timezone.*|        php_value date.timezone $TIMEZONE|" /etc/zabbix/apache.conf
 
 echo "Reiniciando servicios..."
@@ -123,5 +123,5 @@ echo "Usuario: Admin"
 echo "Password: zabbix"
 echo ""
 echo "IMPORTANTE:"
-echo "Cuando entres por primera vez, cambia la contraseña de Admin."
+echo "Cuando acceda por primera vez, cambie la contraseña de Admin."
 echo "=========================================="
